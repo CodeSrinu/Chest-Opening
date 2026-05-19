@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -20,12 +21,54 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gameOverStreak;
     [SerializeField] private TextMeshProUGUI gameOverHighScore;
 
+    [Header("Main Menu Buttons")]
+    [SerializeField] private Button startButton;
+    [SerializeField] private Button quitButton;
+    [SerializeField] private Button mainMenuSettingsButton;
+
+    [Header("Levels Buttons")]
+    [SerializeField] private Button beginnerButton;
+    [SerializeField] private Button intermediateButton;
+    [SerializeField] private Button difficultButton;
+
+    [Header("Pause Buttons")]
+    [SerializeField] private Button resumeButton;
+    [SerializeField] private Button pauseHomeButton;
+    [SerializeField] private Button pauseSettingsButton;
+
+    [Header("Game Over Buttons")]
+    [SerializeField] private Button restartButton;
+    [SerializeField] private Button gameOverHomeButton;
+
+    [Header("Settings Buttons")]
+    [SerializeField] private Button backButton;
+
     [Header("Dependencies")]
     public ChestMovement playerMovement;
     public ScoreManager scoreManager;
 
     private static bool skipMenu;
     private static bool skipLevelPanel;
+
+    private void Awake()
+    {
+        startButton?.onClick.AddListener(StartButton);
+        quitButton?.onClick.AddListener(QuitButton);
+        mainMenuSettingsButton?.onClick.AddListener(ShowSettings);
+
+        beginnerButton?.onClick.AddListener(Beginner);
+        intermediateButton?.onClick.AddListener(Intermediate);
+        difficultButton?.onClick.AddListener(Difficult);
+
+        resumeButton?.onClick.AddListener(ResumeButton);
+        pauseHomeButton?.onClick.AddListener(HomeButton);
+        pauseSettingsButton?.onClick.AddListener(ShowSettings);
+
+        restartButton?.onClick.AddListener(Restart);
+        gameOverHomeButton?.onClick.AddListener(HomeButton);
+
+        backButton?.onClick.AddListener(BackButton);
+    }
 
     private void Start()
     {
@@ -56,29 +99,28 @@ public class UIManager : MonoBehaviour
         {
             levelsPanel?.SetActive(true);
         }
-
     }
 
-private void OnEnable()
-{
-    GameEvents.OnGameOver += ShowGameOverScreen;
-}
-
-private void Update()
-{
-    if (Input.GetKeyDown(KeyCode.Escape))
+    private void OnEnable()
     {
-        if (pausePanel != null && !pausePanel.activeSelf && Time.timeScale > 0f)
-            ShowPause();
-        else if (pausePanel != null && pausePanel.activeSelf)
-            ResumeButton();
+        GameEvents.OnGameOver += ShowGameOverScreen;
     }
-}
 
-private void OnDisable()
-{
-    GameEvents.OnGameOver -= ShowGameOverScreen;
-}
+    private void OnDisable()
+    {
+        GameEvents.OnGameOver -= ShowGameOverScreen;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pausePanel != null && !pausePanel.activeSelf && Time.timeScale > 0f)
+                ShowPause();
+            else if (pausePanel != null && pausePanel.activeSelf)
+                ResumeButton();
+        }
+    }
 
     public void StartButton()
     {
