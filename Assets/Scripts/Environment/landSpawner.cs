@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 public class landSpawner : MonoBehaviour
 {
     public Transform player;
-    public GameObject landPrefab;
+    public GameObject[] landPrefabs;
     public int tilesCount=10;
     public float spawnDistance=1f;
     public float tileLength=20f;
@@ -16,7 +16,8 @@ public class landSpawner : MonoBehaviour
         Debug.Log("Start called");
         for(int i = 0; i < tilesCount; i++)
         {
-            GameObject tile=Instantiate(landPrefab,new Vector3(0,0,i*tileLength),Quaternion.identity);
+            GameObject randomPrefab=landPrefabs[Random.Range(0,landPrefabs.Length)];
+            GameObject tile=Instantiate(randomPrefab,new Vector3(0,0,i*tileLength),Quaternion.identity);
             tiles.Add(tile);
         }
         nextspawnZ=tilesCount*tileLength;
