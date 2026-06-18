@@ -4606,6 +4606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleSpawner
   obstaclePrefabs: []
+  poolSize: 10
   player: {fileID: 0}
   spawnDistanceAhead: 20
   minLateralOffset: -4
@@ -5020,7 +5021,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1533423283
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7507,7 +7508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   currentState: 0
   defaultDifficulty: 0
-  scoreManager: {fileID: 0}
+  scoreManager: {fileID: 2112460702}
   missCounter: {fileID: 0}
   playerMovement: {fileID: 0}
 --- !u!114 &2112460700
@@ -7522,14 +7523,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 430fc02369b13d361a764cdb2f73d9a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  musicSource: {fileID: 0}
-  sfxSource: {fileID: 1471339709}
-  ambientMusic: {fileID: 0}
-  treasureCollectClip: {fileID: 0}
-  treasureMissClip: {fileID: 0}
-  obstacleHitClip: {fileID: 0}
-  swimLoopClip: {fileID: 0}
-  gameOverClip: {fileID: 0}
+  uiMusicSource: {fileID: 1471339709}
+  gameMusicSource: {fileID: 1471339709}
+  sfxSource: {fileID: 1224634488}
+  movementSource: {fileID: 1224634488}
+  sharkSource: {fileID: 1224634488}
+  shieldSource: {fileID: 1224634488}
+  uiBackgroundMusic: {fileID: 8300000, guid: e567e724f96f095499991b736c0b48ee, type: 3}
+  gameBackgroundMusic: {fileID: 8300000, guid: 3fb3892b63f5ff54e9d77194111a5e1d, type: 3}
+  buttonClickSound: {fileID: 8300000, guid: 421f56b07b216d44f8b6acc3bfd42af0, type: 3}
+  treasureCollectClip: {fileID: 8300000, guid: d85bf38c3a71c564eb7ecdf8f7cb1805, type: 3}
+  sharkChaseLoop: {fileID: 8300000, guid: 893e1fa66d7bcbb4e8654e75e72df518, type: 3}
+  sharkDamageClip: {fileID: 8300000, guid: e1d645c51bf2cb94bbc3c5049b9077bf, type: 3}
+  shieldLoop: {fileID: 8300000, guid: bf493d9147acda544b7d25a8f4aa4848, type: 3}
+  swimLoopClip: {fileID: 8300000, guid: a76bd39108ed5fc4ba537dc31be0ba66, type: 3}
+  gameOverClip: {fileID: 8300000, guid: 58e047343fb8b1f45ad88b5e595c70e8, type: 3}
+  obstacleHitClip: {fileID: 8300000, guid: 56a36813a36c1b2448de16d9c77f862e, type: 3}
 --- !u!114 &2112460701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7542,8 +7551,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249d088bcb2e16e48b6a45d2e17f1eb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SettingsManager
-  sfxSlider: {fileID: 0}
-  musicSlider: {fileID: 0}
+  sfxSlider: {fileID: 480847160}
+  musicSlider: {fileID: 599863951}
 --- !u!114 &2112460702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7556,10 +7565,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1aaf4f56c0f604987f6be506d37b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
-  scoreText: {fileID: 0}
-  treasuresText: {fileID: 0}
-  streakText: {fileID: 0}
-  highScoreText: {fileID: 0}
+  scoreText: {fileID: 1664695486}
+  treasuresText: {fileID: 1839196211}
+  streakText: {fileID: 326796558}
+  highScoreText: {fileID: 2137050773}
 --- !u!1 &2119181247
 GameObject:
   m_ObjectHideFlags: 0

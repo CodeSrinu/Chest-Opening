@@ -2,125 +2,149 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance { get; private set; }
+  public static AudioManager Instance { get; private set; }
 
-    [Header("Audio Sources")]
-    public AudioSource musicSource;
-    public AudioSource sfxSource;
+  [Header("Audio Sources")]
+  public AudioSource uiMusicSource;
+  public AudioSource gameMusicSource;
+  public AudioSource sfxSource;
+  public AudioSource movementSource;
+  public AudioSource sharkSource;
+  public AudioSource shieldSource;
+  public AudioClip buttonSource;
+  [Header("Music")]
+  public AudioClip uiBackgroundMusic;
+  public AudioClip gameBackgroundMusic;
+  public AudioClip AmbientMusic;
 
-    [Header("Music")]
-    public AudioClip ambientMusic;
-
-    [Header("SFX")]
-    public AudioClip treasureCollectClip;
-    public AudioClip treasureMissClip;
-    public AudioClip obstacleHitClip;
-    public AudioClip swimLoopClip;
-    public AudioClip gameOverClip;
-    public AudioClip sheildActivatedClip;
-    public AudioClip sheildDeactivatedClip;
+  [Header("UI")]
+  public AudioClip buttonClickSound;
 
 
-    private const string VolumePrefKey = "SFXVolume";
-    private const string MusicPrefKey = "MusicVolume";
+  [Header("SFX")]
+  public AudioClip treasureCollectClip;
+  public AudioClip sharkChaseLoop;
+  public AudioClip sharkDamageClip;
+  public AudioClip shieldstartLoop;
+  public AudioClip shieldstopLoop;
+  public AudioClip swimLoopClip;
+  public AudioClip gameOverClip;
+  public AudioClip obstacleHitClip;
 
-    private void Awake()
+
+  private const string VolumePrefKey = "SFXVolume";
+  private const string MusicPrefKey = "MusicVolume";
+
+  private void Awake()
+  {
+    if (Instance == null)
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        LoadVolumeSettings();
+      Instance = this;
+      DontDestroyOnLoad(gameObject);
+    }
+    else
+    {
+      Destroy(gameObject);
+      return;
     }
 
-    private void Start()
+    LoadVolumeSettings();
+  }
+
+  private void Start()
+  {
+    PlayAmbientMusic();
+  }
+
+  private void LoadVolumeSettings()
+  {
+    float sfxVolume = PlayerPrefs.GetFloat(VolumePrefKey, 0.8f);
+    float musicVolume = PlayerPrefs.GetFloat(MusicPrefKey, 0.5f);
+
+    sfxSource.volume = sfxVolume;
+    movementSource.volume = sfxVolume;
+    sharkSource.volume = sfxVolume;
+    shieldSource.volume = sfxVolume;
+    uiMusicSource.volume = musicVolume;
+    gameMusicSource.volume = musicVolume;
+
+  }
+
+  public void SetSFXVolume(float value)
+  {
+    sfxSource.volume = value;
+    movementSource.volume = value;
+    sharkSource.volume = value;
+    shieldSource.volume = value;
+
+    PlayerPrefs.SetFloat(VolumePrefKey, value);
+  }
+
+  public void SetMusicVolume(float value)
+  {
+    uiMusicSource.volume = value;
+    gameMusicSource.volume = value;
+
+    PlayerPrefs.SetFloat(MusicPrefKey, value);
+  }
+  public void PlayAmbientMusic()
+
+  {
+    if (gameMusicSource != null && AmbientMusic != null)
     {
-        PlayAmbientMusic();
+      gameMusicSource.clip = AmbientMusic;
+      gameMusicSource.loop = true; gameMusicSource.Play();
     }
+  }
 
-    private void LoadVolumeSettings()
+
+  public void PlayButtonSound()
+  {
+    PlaySFX(buttonClickSound);
+  }
+
+  public void PlayTreasureCollect()
+  {
+    PlaySFX(treasureCollectClip);
+  }
+
+  public void PlayObstacleHit()
+  {
+    PlaySFX(obstacleHitClip);
+  }
+
+
+  public void PlaySwimLoop()
+  {
+    PlaySFX(swimLoopClip);
+  }
+
+
+  public void PlayGameOver()
+  {
+    PlaySFX(gameOverClip);
+  }
+  public void StartShieldSound()
+  {
+    PlaySFX(shieldstartLoop);
+  }
+  public void StopShieldSound()
+  {
+    PlaySFX(shieldstopLoop);
+  }
+
+
+  public void PlaySharkDamage()
+  {
+    PlaySFX(sharkDamageClip);
+  }
+
+
+  private void PlaySFX(AudioClip clip)
+  {
+    if (sfxSource != null && clip != null)
     {
-        float sfxVolume = PlayerPrefs.GetFloat(VolumePrefKey, 0.8f);
-        float musicVolume = PlayerPrefs.GetFloat(MusicPrefKey, 0.5f);
-
-        if (sfxSource != null)
-            sfxSource.volume = sfxVolume;
-        if (musicSource != null)
-            musicSource.volume = musicVolume;
+      sfxSource.PlayOneShot(clip);
     }
-
-    public void SetSFXVolume(float value)
-    {
-        if (sfxSource != null)
-            sfxSource.volume = value;
-        PlayerPrefs.SetFloat(VolumePrefKey, value);
-    }
-
-    public void SetMusicVolume(float value)
-    {
-        if (musicSource != null)
-            musicSource.volume = value;
-        PlayerPrefs.SetFloat(MusicPrefKey, value);
-    }
-
-    public void PlayAmbientMusic()
-    {
-        if (musicSource != null && ambientMusic != null)
-        {
-            musicSource.clip = ambientMusic;
-            musicSource.loop = true;
-            musicSource.Play();
-        }
-    }
-
-    public void PlayTreasureCollect()
-    {
-        PlaySFX(treasureCollectClip);
-    }
-
-
-    public void PlayTreasureMiss()
-    {
-        PlaySFX(treasureMissClip);
-    }
-
-    public void PlayObstacleHit()
-    {
-        PlaySFX(obstacleHitClip);
-    }
-
-    public void PlaySwimLoop()
-    {
-        PlaySFX(swimLoopClip);
-    }
-
-    public void PlayGameOver()
-    {
-        PlaySFX(gameOverClip);
-    }
-
-    public void PlaySheildActivate()
-    {
-        PlaySFX(sheildActivatedClip);
-    }
-
-    public void PlaySheildDeactivate()
-    {
-        PlaySFX(sheildDeactivatedClip);
-    }
-
-    private void PlaySFX(AudioClip clip)
-    {
-        if (sfxSource != null && clip != null)
-        {
-            sfxSource.PlayOneShot(clip);
-        }
-    }
+  }
 }
