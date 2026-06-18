@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ee5a969eabb474a939ababab8d6c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SharkPatrol
-  patrolDistance: 20
+  patrolDistance: 8.69
   detectionRange: 10
   attackRange: 2
   attackCooldown: 3
