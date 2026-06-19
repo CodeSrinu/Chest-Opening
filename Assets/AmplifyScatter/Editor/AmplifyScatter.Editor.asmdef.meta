@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9bbce40d5f5c5da49a8c9ba402501aed
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 381322
+  packageName: Amplify Scatter FREE
+  packageVersion: 1.0
+  assetPath: Assets/AmplifyScatter/Editor/AmplifyScatter.Editor.asmdef
+  uploadId: 924390
