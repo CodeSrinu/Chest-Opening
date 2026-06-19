@@ -7529,13 +7529,16 @@ MonoBehaviour:
   movementSource: {fileID: 1224634488}
   sharkSource: {fileID: 1224634488}
   shieldSource: {fileID: 1224634488}
+  buttonSource: {fileID: 8300000, guid: 421f56b07b216d44f8b6acc3bfd42af0, type: 3}
   uiBackgroundMusic: {fileID: 8300000, guid: e567e724f96f095499991b736c0b48ee, type: 3}
   gameBackgroundMusic: {fileID: 8300000, guid: 3fb3892b63f5ff54e9d77194111a5e1d, type: 3}
+  AmbientMusic: {fileID: 8300000, guid: e567e724f96f095499991b736c0b48ee, type: 3}
   buttonClickSound: {fileID: 8300000, guid: 421f56b07b216d44f8b6acc3bfd42af0, type: 3}
   treasureCollectClip: {fileID: 8300000, guid: d85bf38c3a71c564eb7ecdf8f7cb1805, type: 3}
   sharkChaseLoop: {fileID: 8300000, guid: 893e1fa66d7bcbb4e8654e75e72df518, type: 3}
   sharkDamageClip: {fileID: 8300000, guid: e1d645c51bf2cb94bbc3c5049b9077bf, type: 3}
-  shieldLoop: {fileID: 8300000, guid: bf493d9147acda544b7d25a8f4aa4848, type: 3}
+  shieldstartLoop: {fileID: 8300000, guid: bf493d9147acda544b7d25a8f4aa4848, type: 3}
+  shieldstopLoop: {fileID: 8300000, guid: bf493d9147acda544b7d25a8f4aa4848, type: 3}
   swimLoopClip: {fileID: 8300000, guid: a76bd39108ed5fc4ba537dc31be0ba66, type: 3}
   gameOverClip: {fileID: 8300000, guid: 58e047343fb8b1f45ad88b5e595c70e8, type: 3}
   obstacleHitClip: {fileID: 8300000, guid: 56a36813a36c1b2448de16d9c77f862e, type: 3}
