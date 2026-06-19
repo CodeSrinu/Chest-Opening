@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 82be9eceb7c899843a1409e523393983
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 381322
+  packageName: Amplify Scatter FREE
+  packageVersion: 1.0
+  assetPath: Assets/AmplifyScatter/Editor/Version.cs
+  uploadId: 924390

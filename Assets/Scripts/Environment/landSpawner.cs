@@ -13,7 +13,6 @@ public class landSpawner : MonoBehaviour
     private float nextspawnZ;
     void Start()
     {
-        Debug.Log("Start called");
         for(int i = 0; i < tilesCount; i++)
         {
             GameObject randomPrefab=landPrefabs[Random.Range(0,landPrefabs.Length)];
@@ -28,7 +27,6 @@ public class landSpawner : MonoBehaviour
         if (player.position.z+spawnDistance > oldestTile.transform.position.z+tileLength)
         {
             ReuseTile();
-            Debug.Log("Update Running");
         }
         
     }
