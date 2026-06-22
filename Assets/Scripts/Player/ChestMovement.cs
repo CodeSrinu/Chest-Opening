@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ChestMovement : MonoBehaviour
@@ -48,6 +49,11 @@ public class ChestMovement : MonoBehaviour
     {
         isChestOpen = Input.GetKey(chestOpenKey);
 
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            StartCoroutine(StartDiveAndRiseUp());
+        }
+
         if (isChestOpen) playerAnimator.SetBool("isFast", true);
         else playerAnimator.SetBool("isFast", false);
 
@@ -63,6 +69,34 @@ public class ChestMovement : MonoBehaviour
 
         UpdateChestVisual();
     }
+
+
+    private IEnumerator StartDiveAndRiseUp()
+    {
+        yield return StartCoroutine(RotateTo(Quaternion.Euler(45f, 0f, 0f), 1f));
+        yield return new WaitForSeconds(0.2f);
+        yield return StartCoroutine(RotateTo(Quaternion.identity, 1f));
+        yield return new WaitForSeconds(1f);
+        yield return StartCoroutine(RotateTo(Quaternion.Euler(-45f, 0f, 0f), 1f));
+        yield return new WaitForSeconds(0.05f);
+        yield return StartCoroutine(RotateTo(Quaternion.identity, 1f));
+    }
+
+    private IEnumerator RotateTo(Quaternion target, float duration)
+    {
+        Quaternion start = transform.rotation;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            transform.rotation = Quaternion.Lerp(start, target, elapsed / duration);
+            yield return null; 
+        }
+
+        transform.rotation = target;
+    }
+
 
     private void FixedUpdate()
     {
